@@ -1,18 +1,35 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div class="container-general">
+    <CustomInput :showDialog="showDialog" @openDialog="openDialog"/>
+    <GridCard @click="notShowDialog"/>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+<script lang="ts" setup>
+import GridCard from '@/components/GridCard.vue';
+import CustomInput from '@/components/CustomInput.vue';
+import { ref } from 'vue'
 
-export default defineComponent({
-  name: 'HomeView',
-  components: {
-    HelloWorld,
-  },
-});
+const showDialog = ref(false);
+
+const notShowDialog = () => {
+  showDialog.value = false;
+}
+
+const openDialog = () => {
+  showDialog.value = true;
+}
 </script>
+
+<style scoped lang='scss'>
+.container-general {
+  display: flex;
+  flex: 7;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: $primario;
+  box-sizing: border-box;
+  padding: 20px;
+}
+</style>
